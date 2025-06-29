@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitTorrent Merkle Tree Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BitTorrent Merkle Tree Visualizer</h1>
+        <p class="subtitle">See how Merkle Trees verify file integrity in peer-to-peer transfers</p>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <label for="fileInput">Select a File to Simulate:</label>
+                <input type="file" id="fileInput">
+                <div class="file-info" id="fileInfo" style="display: none; margin-top: 10px;">
+                    <strong>Selected File:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)
+                </div>
+            </div>
+            
+            <div class="controls">
+                <label for="pieceSize">Piece Size:</label>
+                <select id="pieceSize">
+                    <option value="16384">16KB (Default)</option>
+                    <option value="32768">32KB</option>
+                    <option value="65536">64KB</option>
+                    <option value="131072">128KB</option>
+                    <option value="262144">256KB</option>
+                    <option value="524288">512KB</option>
+                    <option value="1048576">1MB</option>
+                </select>
+                <button id="simulateBtn">🚀 Simulate Torrent</button>
+                <button id="clearBtn">🗑️ Reset</button>
+            </div>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step" id="step1">1. File Pieces</div>
+            <div class="step" id="step2">2. Hash Pieces</div>
+            <div class="step" id="step3">3. Build Tree</div>
+            <div class="step" id="step4">4. P2P Transfer</div>
+        </div>
+
+        <div class="visualization" id="visualization">
+            <div class="intro-message">
+                <h3>How BitTorrent Uses Merkle Trees</h3>
+                <p>BitTorrent breaks files into pieces and verifies their integrity using a Merkle Tree:</p>
+                <ol>
+                    <li>The original seeder creates hashes for each piece</li>
+                    <li>Hashes are combined into a Merkle Tree</li>
+                    <li>The root hash is included in the torrent file</li>
+                    <li>Peers verify each received piece against the tree</li>
+                </ol>
+                <p>Select a file and click "Simulate Torrent" to begin.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
